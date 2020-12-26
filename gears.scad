@@ -2,6 +2,8 @@
 
 use <MCAD/involute_gears.scad>
 
+base = false;
+gears = false;
 module gear_thing() {
     union() {
     linear_extrude(4) gear(bore_diameter=2.1,number_of_teeth=30, circular_pitch=100 , flat=true);
@@ -26,16 +28,19 @@ pitch_apex1 = outside_pitch_radius2 * sin (axis_angle) +
 cone_distance = sqrt (pow (pitch_apex1, 2) + pow (outside_pitch_radius1, 2));
 */
 
+
+if (gears) {
 translate([0,0,8]) gear_thing();
 
 translate([jmp_distance,0,12]) rotate([0,0,10])  gear_thing();
 translate([jmp_distance*2,0,16]) rotate([0,0,10])  gear_thing();
+}
 
 
 
 
 
-
+if (base) {
 
     difference() {
     
@@ -54,4 +59,4 @@ translate([jmp_distance*2,0,16]) rotate([0,0,10])  gear_thing();
     }
     }
     
-     
+}     
